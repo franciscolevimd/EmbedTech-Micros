@@ -1,0 +1,25 @@
+:project:
+  :build_root: Build/ceedling
+  :release_build: TRUE
+  :test_file_prefix: test_
+
+:paths:
+  :test:
+    - test/** # Directorio donde están los archivos a testear.
+  :source:
+    - Autosar/** # Directorio donde se encuentran las librerias Autosar.
+  :include:
+    - Autosar/** # Directorio donde se encuentran los .h.
+
+:plugins:
+  :load_paths: []
+  :enabled:
+    - report_tests_pretty_stdout
+    - gcov
+
+:gcov:
+  :abort_on_uncovered: true
+  :utilities:
+    - gcovr
+  :reports:
+    - HtmlDetailed
