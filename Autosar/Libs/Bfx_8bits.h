@@ -16,7 +16,7 @@
  */
 static inline void Bfx_SetBit_u8u8(uint8 *Data, uint8 BitPn)
 {
-    *Data |= (0x01 << BitPn);
+    *Data |= (0x01u << BitPn);
 }
 
 /**
@@ -28,9 +28,9 @@ static inline void Bfx_SetBit_u8u8(uint8 *Data, uint8 BitPn)
  * @param Data Pointer to input data.
  * @param BitPn Bit position.
  */
-static inline void Bfx_CtrlBit_u8u8(uint8 *Data, uint8 BitPn)
+static inline void Bfx_ClrBit_u8u8(uint8 *Data, uint8 BitPn)
 {
-    *Data = (*Data & ~(0x01 << BitPn));
+    *Data = (*Data & ~(0x01u << BitPn));
 }
 
 /**
@@ -46,7 +46,7 @@ static inline boolean Bfx_GetBit_u8u8_u8(uint8 Data, uint8 BitPn)
 {
     boolean Result = FALSE;
 
-    if ((Data & (0x01 << BitPn)) != 0)
+    if ((Data & (0x01u << BitPn)) != 0)
     {
         Result = TRUE;
     }
@@ -73,14 +73,14 @@ static inline void Bfx_SetBits_u8u8u8u8(uint8 *Data, uint8 BitStartPn, uint8 Bit
 
     for (uint8 i = 0x00; i < BitLn; i++)
     {
-        Mask |= (0x01 << i);
+        Mask |= (0x01u << i);
     }
 
-    if (Status == 0x01)
+    if (Status == 0x01u)
     {
         *Data |= (Mask << BitStartPn);
     }
-    else if (Status == 0x00)
+    else if (Status == 0x00u)
     {
         *Data &= ~(Mask << BitStartPn);
     }
@@ -101,14 +101,14 @@ static inline void Bfx_SetBits_u8u8u8u8(uint8 *Data, uint8 BitStartPn, uint8 Bit
  */
 static inline uint8 Bfx_GetBits_u8u8u8_u8(uint8 Data, uint8 BitStartPn, uint8 BitLn)
 {
-    uint8 Resultado = UINT8_MIN;
-    uint8 j = 0x00;
+    uint8 Resultado = 0x00;
+    uint8 j         = 0x00;
 
     for (uint8 i = BitStartPn; i < (BitStartPn + BitLn); i++)
     {
-        if ((Data & (0x01 << i)) != 0)
+        if ((Data & (0x01u << i)) != 0)
         {
-            Resultado |= (0x01 << j);
+            Resultado |= (0x01u << j);
         }
         j++;
     }
@@ -183,7 +183,7 @@ static inline boolean Bfx_TstBitLnMask_u8u8_u8(uint8 Data, uint8 Mask)
 
     for (uint8 i = 0x00; i < 0x08; i++)
     {
-        if (((Mask & (0x01 << i)) != 0) && ((Data & (0x01 << i)) != 0))
+        if (((Mask & (0x01u << i)) != 0) && ((Data & (0x01u << i)) != 0))
         {
             Result = TRUE;
             break;
@@ -259,15 +259,15 @@ static inline void Bfx_ShiftBitLt_u8u8(uint8 *Data, uint8 ShiftCnt)
  * @param Status Status vale.
  * @param BitPn Bit position.
  */
-static inline void Bfx_PutBit_u8u8(uint8 *Data, uint8 BitPn, boolean Status)
+static inline void Bfx_PutBit_u8u8u8(uint8 *Data, uint8 BitPn, boolean Status)
 {
-    uint8 Mask = (0x01 << BitPn);
+    uint8 Mask = (0x01u << BitPn);
 
     if (Status == TRUE)
     {
         *Data |= Mask;
     }
-    else
+    else if (Status == FALSE)
     {
         *Data &= ~Mask;
     }

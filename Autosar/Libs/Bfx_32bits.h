@@ -267,9 +267,9 @@ static inline void Bfx_PutBit_u32u8u8(uint32 *Data, uint8 BitPn, boolean Status)
     {
         *Data |= Mask;
     }
-    else
+    else if (Status == FALSE)
     {
-        *Data = ~(*Data & ~Mask);
+        *Data &= ~Mask;
     }
 }
 #endif /* BFX_32BITS_H_ */
