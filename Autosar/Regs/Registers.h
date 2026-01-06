@@ -14,6 +14,8 @@
 #define PORTG_BASE (AHB1PERPIH_ADDRESS + 0x1800)  ///< DIRECCION BASE DEL PUERTO G
 #define PORTH_BASE (AHB1PERPIH_ADDRESS + 0x1C00)  ///< DIRECCION BASE DEL PUERTO H
 
+#define RCC_BASE (AHB1PERPIH_ADDRESS + 0x3800UL)  ///< DIRECCION BASE DEL RCC
+
 typedef struct _Port_RegisterType
 {
     volatile uint32 MODER;
@@ -29,6 +31,45 @@ typedef struct _Port_RegisterType
 
 } Port_RegisterType;
 
+typedef struct _RCC_RegisterType
+{
+    volatile uint32 CR;
+    volatile uint32 PLLCFGR;
+    volatile uint32 CFGR;
+    volatile uint32 CIR;
+    volatile uint32 AHB1RSTR;
+    volatile uint32 AHB2RSTR;
+    volatile uint32 AHB3RSTR;
+    volatile uint32 RESERVADO1;
+    volatile uint32 APB1RSTR;
+    volatile uint32 APB2RSTR;
+    volatile uint32 RESERVADO2[2];
+    volatile uint32 AHB1ENR;
+    volatile uint32 AHB2ENR;
+    volatile uint32 AHB3ENR;
+    volatile uint32 RESERVADO3;
+    volatile uint32 APB1ENR;
+    volatile uint32 APB2ENR;
+    volatile uint32 RESERVADO4[2];
+    volatile uint32 AHB1LPENR;
+    volatile uint32 AHB2LPERN;
+    volatile uint32 AHB3LPERN;
+    volatile uint32 RESERVADO5;
+    volatile uint32 APB1LPERN;
+    volatile uint32 APB2LPERN;
+    volatile uint32 RESERVADO6[2];
+    volatile uint32 BDCR;
+    volatile uint32 CSR;
+    volatile uint32 RESERVADO7[2];
+    volatile uint32 SSCGR;
+    volatile uint32 PLLI2SCFGR;
+    volatile uint32 PLLSAICFGR;
+    volatile uint32 DCKCFGR;
+    volatile uint32 CKGATENR;
+    volatile uint32 DCKCFGR2;
+
+} RCC_RegisterType;
+
 #define PORTA ((Port_RegisterType *)PORTA_BASE);
 #define PORTB ((Port_RegisterType *)PORTB_BASE);
 #define PORTC ((Port_RegisterType *)PORTC_BASE);
@@ -37,5 +78,25 @@ typedef struct _Port_RegisterType
 #define PORTF ((Port_RegisterType *)PORTF_BASE);
 #define PORTG ((Port_RegisterType *)PORTG_BASE);
 #define PORTH ((Port_RegisterType *)PORTH_BASE);
+
+#define RCC ((RCC_RegisterType *)RCC_BASE);
+
+#define RCC_GPIOA_CLK_EN() (RCC->AHB1ENR |= (0x01U << 0x00U))
+#define RCC_GPIOB_CLK_EN() (RCC->AHB1ENR |= (0x01U << 0x01U))
+#define RCC_GPIOC_CLK_EN() (RCC->AHB1ENR |= (0x01U << 0x02U))
+#define RCC_GPIOD_CLK_EN() (RCC->AHB1ENR |= (0x01U << 0x03U))
+#define RCC_GPIOE_CLK_EN() (RCC->AHB1ENR |= (0x01U << 0x04U))
+#define RCC_GPIOF_CLK_EN() (RCC->AHB1ENR |= (0x01U << 0x05U))
+#define RCC_GPIOG_CLK_EN() (RCC->AHB1ENR |= (0x01U << 0x06U))
+#define RCC_GPIOH_CLK_EN() (RCC->AHB1ENR |= (0x01U << 0x07U))
+
+#define RCC_GPIOA_CLK_DIS() (RCC->AHB1ENR &= ~(0x01U << 0x00U))
+#define RCC_GPIOB_CLK_DIS() (RCC->AHB1ENR &= ~(0x01U << 0x01U))
+#define RCC_GPIOC_CLK_DIS() (RCC->AHB1ENR &= ~(0x01U << 0x02U))
+#define RCC_GPIOD_CLK_DIS() (RCC->AHB1ENR &= ~(0x01U << 0x03U))
+#define RCC_GPIOE_CLK_DIS() (RCC->AHB1ENR &= ~(0x01U << 0x04U))
+#define RCC_GPIOF_CLK_DIS() (RCC->AHB1ENR &= ~(0x01U << 0x05U))
+#define RCC_GPIOG_CLK_DIS() (RCC->AHB1ENR &= ~(0x01U << 0x06U))
+#define RCC_GPIOH_CLK_DIS() (RCC->AHB1ENR &= ~(0x01U << 0x07U))
 
 #endif /* REGISTERS_H_ */
