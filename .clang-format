@@ -5,4 +5,12 @@ BreakBeforeBraces: Allman
 AllowShortFunctionsOnASingleLine: false
 SortIncludes: false
 SpaceBeforeParens: ControlStatements
+SpacesInParentheses: true
+
 AlignConsecutiveAssignments: true
+AlignTrailingComments: true
+AlignConsecutiveDeclarations: true
+AlignConsecutiveMacros: AcrossEmptyLinesAndComments
+
+# BinPackParameters: false
+# BinPackArguments: false
