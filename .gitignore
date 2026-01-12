@@ -8,3 +8,5 @@ Build/
 *.i
 *.o
 *.s
+
+!startup_stm32f446xx.s
