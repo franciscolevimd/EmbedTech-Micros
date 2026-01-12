@@ -34,7 +34,6 @@ typedef struct
 } Std_TransformerError;
 
 typedef uint8 Std_TransformerForwardCode;
-#define E_OK 0x00
 #define STD_SAFETY_INVALID_REP 0x01
 #define STD_SAFETY_INVALID_SEQ 0x02
 #define STD_SAFETY_INVALID_CRC 0x03
@@ -56,10 +55,8 @@ typedef uint8 Std_MessageResultType;
 
 #ifndef STATUSTYPEDEFINED
 #define STATUSTYPEDEFINED
-#define E_OK 0x00u
 typedef unsigned char StatusType;
 #endif
-#define E_NOT_OK 0x01u
 
 #define STD_HIGH 0x01u
 #define STD_LOW 0x00u
